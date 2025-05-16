@@ -1,0 +1,11 @@
+// Expressions for Group Expression node with various ways to group points
+
+// Last point:
+vertexprimindex(0, @vtxnum) == primvertexcount(0, @primnum) - 1
+
+// Last and first
+(vertexprimindex(0, @vtxnum) == 0) + (vertexprimindex(0, @vtxnum) == primvertexcount(0, @primnum) - 1)
+
+// Last and first point (Konstantin Magnus way)
+vertexprimindex(0, @vtxnum) == 0 || vertexprimindex(0, @vtxnum) == i@numvtx - 1
+
