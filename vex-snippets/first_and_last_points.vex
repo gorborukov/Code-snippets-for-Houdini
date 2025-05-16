@@ -1,0 +1,5 @@
+// group first and last points of line/curve
+
+if ( neighbourcount ( 0, @ptnum ) == 1 ) {
+    i@group_endpts = 1;
+}
