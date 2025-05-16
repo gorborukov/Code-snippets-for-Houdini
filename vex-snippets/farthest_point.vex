@@ -1,0 +1,19 @@
+// farthest point by Z axis
+
+float maxZ = -9999999;
+int farthestPoint = -1;
+
+int numPoints = @numpt;
+for (int i = 0; i < numPoints; i++) {
+
+    vector pos = point(0, "P", i);
+    
+    if (pos.z > maxZ) {
+        maxZ = pos.z;
+        farthestPoint = i;
+    }
+}
+
+if (farthestPoint != -1) {
+    setpointgroup(0, "farthest_z_group", farthestPoint, 1);
+}
