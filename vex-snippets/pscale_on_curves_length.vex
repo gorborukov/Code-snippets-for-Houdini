@@ -1,0 +1,52 @@
+int curvepts[] = primpoints(0, @primnum);
+int numpts = len(curvepts);
+
+if (numpts >= 2) {
+    // Calculate total curve length
+    float total_length = 0.0;
+    for (int i = 0; i < numpts-1; i++) {
+        vector p1 = point(0, "P", curvepts[i]);
+        vector p2 = point(0, "P", curvepts[i+1]);
+        total_length += distance(p1, p2);
+    }
+    
+    float accum_dist = 0.0;
+    int found_pos = 0;
+    
+    for (int i = 0; i < numpts; i++) {
+        if (curvepts[i] == @ptnum) {
+            found_pos = i;
+            break;
+        }
+        if (i < numpts-1) {
+            vector p1 = point(0, "P", curvepts[i]);
+            vector p2 = point(0, "P", curvepts[i+1]);
+            accum_dist += distance(p1, p2);
+        }
+    }
+    
+    float position_in_curve;
+    
+    if (found_pos == 0) {
+        position_in_curve = 0.0;
+    }
+    else if (found_pos == numpts-1) {
+        position_in_curve = 1.0;
+    }
+    else {
+        float dist_to_current = 0.0;
+        for (int i = 0; i < found_pos; i++) {
+            vector p1 = point(0, "P", curvepts[i]);
+            vector p2 = point(0, "P", curvepts[i+1]);
+            dist_to_current += distance(p1, p2);
+        }
+        position_in_curve = dist_to_current / total_length;
+    }
+    
+    float start_scale = chf("start_scale");
+    float end_scale = chf("end_scale");
+    
+    float ramp_value = chramp("falloff_ramp", position_in_curve);
+    
+    @pscale = fit(ramp_value, 0, 1, start_scale, end_scale);
+}
