@@ -1,0 +1,6 @@
+// group prims by vertex count (usable for blasting prims with too much vertexes)
+int vertexcount = chi("vertexcount");
+
+if (primvertexcount(0, @primnum) > vertexcount) {
+    setprimgroup(0, "some_vertex_count", @primnum, 1);
+}

@@ -2,7 +2,6 @@ int curvepts[] = primpoints(0, @primnum);
 int numpts = len(curvepts);
 
 if (numpts >= 2) {
-    // Calculate total curve length
     float total_length = 0.0;
     for (int i = 0; i < numpts-1; i++) {
         vector p1 = point(0, "P", curvepts[i]);
