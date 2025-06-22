@@ -1,0 +1,8 @@
+// Removing points that are too close to each other
+float chf_threshold = chf("threshold");  
+int nearpts[] = nearpoints(0, @P, chf_threshold);
+
+
+if (len(nearpts) > 1) {
+    removepoint(0, @ptnum);
+}
