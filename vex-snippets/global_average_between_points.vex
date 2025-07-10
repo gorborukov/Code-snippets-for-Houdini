@@ -1,0 +1,23 @@
+// Global average distance from each point to its neighbors
+
+int max_neighbors = 10; // chi("max_neighbors", 10);
+float search_radius = 1.0; // chf("search_radius", 1.0);
+int sample_size = min(500, npoints(0));
+
+float grand_total = 0;
+int grand_count = 0;
+
+for (int i = 0; i < sample_size; i++) {
+    int ptnum = int(rand(i + 0.123) * (npoints(0)-1));
+    vector current_pos = point(0, "P", ptnum);
+    
+    int neighbors[] = nearpoints(0, current_pos, search_radius, max_neighbors);
+    
+    for (int j = 1; j < len(neighbors); j++) {
+        vector neighbor_pos = point(0, "P", neighbors[j]);
+        grand_total += distance(current_pos, neighbor_pos);
+        grand_count++;
+    }
+}
+
+f@global_avg_distance = grand_count > 0 ? grand_total / grand_count : 0;
