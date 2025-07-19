@@ -1,0 +1,18 @@
+// Cleaning small trail lines
+
+float threshold = ch("threshold");
+
+int points[] = primpoints(0, @primnum);
+
+float total_length = 0;
+
+for (int i = 0; i < len(points) - 1; ++i) {
+    vector current_point = point(0, "P", points[i]);
+    vector next_point = point(0, "P", points[i + 1]);
+    
+    total_length += distance(current_point, next_point);
+}
+
+if (total_length < threshold) {
+    removeprim(0, @primnum, 1);
+}
