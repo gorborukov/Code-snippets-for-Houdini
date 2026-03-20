@@ -1,0 +1,9 @@
+vector surfP = minpos(1, @P);
+vector toSurf = surfP - @P;
+float dist = length(toSurf);
+float radius = 0.3;
+float strength = 0.5;
+
+if (dist < radius) {
+    @v += normalize(toSurf) * strength * (1.0 - dist/radius) * @TimeInc;
+}
