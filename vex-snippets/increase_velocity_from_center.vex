@@ -1,0 +1,5 @@
+float dist = length(@P);
+
+float scale = 1.0 + dist * chf("dist_mult");
+
+v@v *= scale;
